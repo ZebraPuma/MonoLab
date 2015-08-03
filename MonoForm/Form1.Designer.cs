@@ -38,7 +38,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btInfo.Location = new System.Drawing.Point(13, 13);
             this.btInfo.Name = "btInfo";
-            this.btInfo.Size = new System.Drawing.Size(759, 23);
+            this.btInfo.Size = new System.Drawing.Size(599, 23);
             this.btInfo.TabIndex = 0;
             this.btInfo.Text = "Get Info";
             this.btInfo.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(759, 506);
+            this.txtInfo.Size = new System.Drawing.Size(599, 386);
             this.txtInfo.TabIndex = 1;
             this.txtInfo.WordWrap = false;
             // 
@@ -63,9 +63,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btInfo);
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SkypeBox";

@@ -37,13 +37,14 @@ namespace MonoForm
                 default:
                     break;
             }
-            txtInfo.Text = Platform + " Box\r\n" + "\r\n";
+            txtInfo.Text = string.Format("{0} Box : {1}\r\n", Platform, System.Environment.MachineName );
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
             psi.Arguments = Arguments;
             psi.RedirectStandardOutput = true;
             psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
             pNet.StartInfo = psi;
             pNet.Start();
             txtInfo.Text += pNet.StandardOutput.ReadToEnd();
