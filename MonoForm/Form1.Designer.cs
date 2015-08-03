@@ -33,9 +33,11 @@
             // 
             // btInfo
             // 
+            this.btInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btInfo.Location = new System.Drawing.Point(13, 13);
             this.btInfo.Name = "btInfo";
-            this.btInfo.Size = new System.Drawing.Size(75, 23);
+            this.btInfo.Size = new System.Drawing.Size(259, 23);
             this.btInfo.TabIndex = 0;
             this.btInfo.Text = "Get Info";
             this.btInfo.UseVisualStyleBackColor = true;
@@ -48,7 +50,8 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btInfo);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SkypeBox";
             this.ResumeLayout(false);
 
         }
