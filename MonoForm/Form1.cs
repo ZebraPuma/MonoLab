@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net;
 
 namespace MonoForm
 {
@@ -37,7 +38,7 @@ namespace MonoForm
                 default:
                     break;
             }
-            txtInfo.Text = string.Format("{0} Box : {1}\r\n", Platform, System.Environment.MachineName );
+            txtInfo.Text = string.Format("{0} Box : {1}\r\n", Platform,  Dns.GetHostName().ToLower());
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
