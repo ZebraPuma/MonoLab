@@ -20,17 +20,17 @@ namespace MonoForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            String OSVersion =  System.Environment.OSVersion.ToString();
+            txtInfo.Text = OSVersion + "\r\n";
+
             Process pNet = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo("ifconfig");
-            psi.Arguments = "ifconfig eth0";
+            ProcessStartInfo psi = new ProcessStartInfo("ipconfig");
+            psi.Arguments = "";
+            psi.RedirectStandardOutput = true;
+            psi.UseShellExecute = false;
             pNet.StartInfo = psi;
             pNet.Start();
-            
-            MessageBox.Show("Hello World !");
-
-
-            
-
+            txtInfo.Text += pNet.StandardOutput.ReadToEnd();
         }
     }
 }
