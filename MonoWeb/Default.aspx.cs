@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 
-namespace SkypeBox
+namespace MonoWeb
 {
     public partial class Default : System.Web.UI.Page
     {

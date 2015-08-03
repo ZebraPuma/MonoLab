@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SkypeBox {
+namespace MonoWeb {
     
     
     public partial class Default {

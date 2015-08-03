@@ -1,4 +1,4 @@
-﻿namespace MonoWindowsForms
+﻿namespace MonoForm
 {
     partial class Form1
     {
