@@ -20,7 +20,12 @@ namespace MonoForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.scyeur.net");
+            Process pNet = new Process();
+            ProcessStartInfo psi = new ProcessStartInfo("ifconfig");
+            psi.Arguments = "ifconfig eth0";
+            pNet.StartInfo = psi;
+            pNet.Start();
+            
             MessageBox.Show("Hello World !");
 
 
