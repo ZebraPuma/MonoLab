@@ -31,13 +31,13 @@ namespace MonoForm
                 case Platform.Linux:
                     Command = "ifconfig";
                     break;
-                case Platform.Mac:
+                case Platform.MacOSX:
                     Command = "ifconfig";
                     break;
                 default:
                     break;
             }
-            txtInfo.Text = Platform + "\r\n" + "\r\n";
+            txtInfo.Text = Platform + " Box\r\n" + "\r\n";
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
@@ -53,7 +53,7 @@ namespace MonoForm
             switch (System.Environment.OSVersion.Platform )
             {
                 case PlatformID.MacOSX:
-                    return Platform.Mac;
+                    return Platform.MacOSX;
                 case PlatformID.Unix:
                     return Platform.Linux;
                 default:
@@ -65,7 +65,7 @@ namespace MonoForm
         {
             Windows,
             Linux,
-            Mac
+            MacOSX
         }
     }
 }

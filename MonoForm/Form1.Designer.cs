@@ -57,6 +57,7 @@
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtInfo.Size = new System.Drawing.Size(759, 506);
             this.txtInfo.TabIndex = 1;
+            this.txtInfo.WordWrap = false;
             // 
             // Form1
             // 
