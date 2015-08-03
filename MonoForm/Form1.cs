@@ -38,7 +38,9 @@ namespace MonoForm
                 default:
                     break;
             }
-            txtInfo.Text = string.Format("{0} Box : {1}\r\n", Platform,  Dns.GetHostName().ToLower());
+
+            String HostName = Dns.GetHostName().ToLower();
+            txtInfo.Text = string.Format("{0} Box : {1}\r\n", Platform,  HostName );
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
