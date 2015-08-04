@@ -47,6 +47,7 @@ namespace MonoForm
                 case Platform.MacOSX:
                     Command = "ifconfig";
                     Arguments = "en0";
+                    Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 default:
                     break;
