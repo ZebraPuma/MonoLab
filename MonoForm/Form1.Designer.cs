@@ -37,7 +37,9 @@
             this.mtxtSubNet = new System.Windows.Forms.MaskedTextBox();
             this.mtxtGateway = new System.Windows.Forms.MaskedTextBox();
             this.gIPInfo = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.gIPInfo.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btInfo
@@ -58,12 +60,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInfo.BackColor = System.Drawing.Color.White;
+            this.txtInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInfo.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInfo.Location = new System.Drawing.Point(13, 160);
+            this.txtInfo.Location = new System.Drawing.Point(13, 13);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
-            this.txtInfo.Size = new System.Drawing.Size(600, 269);
+            this.txtInfo.Size = new System.Drawing.Size(570, 239);
             this.txtInfo.TabIndex = 1;
             this.txtInfo.WordWrap = false;
             // 
@@ -155,13 +158,26 @@
             this.gIPInfo.TabIndex = 8;
             this.gIPInfo.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.txtInfo);
+            this.panel1.Location = new System.Drawing.Point(13, 160);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(599, 269);
+            this.panel1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gIPInfo);
-            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btInfo);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "Form1";
@@ -169,8 +185,9 @@
             this.Text = "SkypeBox";
             this.gIPInfo.ResumeLayout(false);
             this.gIPInfo.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -185,6 +202,7 @@
         private System.Windows.Forms.MaskedTextBox mtxtSubNet;
         private System.Windows.Forms.MaskedTextBox mtxtGateway;
         private System.Windows.Forms.GroupBox gIPInfo;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
