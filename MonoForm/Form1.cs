@@ -93,7 +93,7 @@ namespace MonoForm
 
                 String HostName = Dns.GetHostName();
                 HostName = HostName.Split('.')[0].ToUpper();
-                Text = string.Format("Default Network IP Config - {0}", HostName);
+                Text = string.Format("Default Network IP Config : {0}", HostName);
 
 
             switch (Environment.OSVersion.Platform)
