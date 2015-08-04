@@ -73,6 +73,7 @@ namespace MonoForm
             if (M.Success )
             {
                 IPInfo Ip = new IPInfo(M.Groups["ip"].Value,  M.Groups["net"].Value, M.Groups["gw"].Value );
+                // IPInfo Ip = new IPInfo(M.Groups["ip"].Value,  "0xffffff00", M.Groups["gw"].Value );
                 mtxtIPAddress.Text = Ip.IPAddress;
                 mtxtSubNet.Text = Ip.SubNet;
                 mtxtGateway.Text = Ip.Gateway;
@@ -134,11 +135,23 @@ namespace MonoForm
 
             private string FormatIPAddress( String Address)
             {
+                if (Address.StartsWith("0x"))
+                {
+                    Address = Address.TrimStart("0x".ToCharArray());
+                    Address = String.Join(".", Split( Address, 2).Select( item => int.Parse( item, System.Globalization.NumberStyles.HexNumber )).ToArray());
+                }
                 var blocks = Address.Split('.');
                 blocks = blocks.Select( item => item.Trim().PadLeft(3, ' ')).ToArray();
                 return String.Join(".", blocks).ToString();
             }
 
+            static IEnumerable<string> Split(string str, int chunkSize)
+            {
+                return Enumerable.Range(0, str.Length / chunkSize)
+                    .Select(i => str.Substring(i * chunkSize, chunkSize));
+            }
+
+       
         }
     }
 }
