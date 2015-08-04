@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoForm", "MonoForm\MonoFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoWeb", "MonoWeb\MonoWeb.csproj", "{5E5EEFFF-36F9-40F0-8F1F-3735CFC70CF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{8FAC526A-B291-4616-A10C-EFFE0FA19F5E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Users\regis.scyeur\OneDrive\Images\NetIpConfig-Linux.png = ..\..\Users\regis.scyeur\OneDrive\Images\NetIpConfig-Linux.png
+		..\..\Users\regis.scyeur\OneDrive\Images\NetIPConfig-MacOSX.png = ..\..\Users\regis.scyeur\OneDrive\Images\NetIPConfig-MacOSX.png
+		..\..\Users\regis.scyeur\OneDrive\Images\NetIPConfig-Windows.PNG = ..\..\Users\regis.scyeur\OneDrive\Images\NetIPConfig-Windows.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
