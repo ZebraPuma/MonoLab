@@ -13,6 +13,10 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Threading;
+using System.Drawing;
+using System.Drawing.Imaging;
+ 
+
 
 namespace MonoForm
 {
@@ -21,19 +25,24 @@ namespace MonoForm
         [DllImport("libc")]
         static extern int uname(IntPtr buf);
 
+        private Platform CurrentPlatform;
 
         public Form1()
         {
             InitializeComponent();
+            GetPlatform();
+            GetIpInfo();
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GetIpInfo( )
         {
             String Command = "";
             String Arguments = "";
             String Pattern = "";
-            Platform Os = GetPlatform();
-            switch (Os)
+            txtInfo.Text = "";
+
+            switch (CurrentPlatform)
             {
                 case Platform.Windows:
                     Command = "ipconfig";
@@ -41,12 +50,12 @@ namespace MonoForm
                     break;
                 case Platform.Linux:
                     Command = "ifconfig";
-                    Arguments = "eth0";
+                    // Arguments = "eth0";
                     Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 case Platform.MacOSX:
                     Command = "ifconfig";
-                    Arguments = "en0";
+                    // Arguments = "en0";
                     Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 default:
@@ -54,7 +63,7 @@ namespace MonoForm
             }
 
             String HostName = Dns.GetHostName().ToLower();
-            txtInfo.Text = string.Format("{0} Box : {1}\r\n\r\n", Os, HostName);
+            txtInfo.Text = string.Format("{0} Box : {1}\r\n\r\n", CurrentPlatform, HostName);
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
@@ -71,9 +80,9 @@ namespace MonoForm
             String Input = txtInfo.Text;
             Regex Ex = new Regex(Pattern);
             Match M = Ex.Match(Input);
-            if (M.Success )
+            if (M.Success)
             {
-                IPInfo Ip = new IPInfo(M.Groups["ip"].Value,  M.Groups["net"].Value, M.Groups["gw"].Value );
+                IPInfo Ip = new IPInfo(M.Groups["ip"].Value, M.Groups["net"].Value, M.Groups["gw"].Value);
                 // IPInfo Ip = new IPInfo(M.Groups["ip"].Value,  "0xffffff00", M.Groups["gw"].Value );
                 mtxtIPAddress.Text = Ip.IPAddress;
                 mtxtSubNet.Text = Ip.SubNet;
@@ -81,17 +90,22 @@ namespace MonoForm
             }
         }
 
-        private Platform GetPlatform()
+        private void GetPlatform()
         {
-            switch (System.Environment.OSVersion.Platform)
+            switch (Environment.OSVersion.Platform )
             {
                 case PlatformID.MacOSX:
-                    return Platform.MacOSX;
+                    CurrentPlatform = Platform.MacOSX;
+                    break;
                 case PlatformID.Unix:
-                    return ( IsMacOS() ? Platform.MacOSX : Platform.Linux);
-                default:
-                    return Platform.Windows;
+                    CurrentPlatform =  ( IsMacOS() ? Platform.MacOSX : Platform.Linux);
+                    break;
             }
+
+            pbMacOSX.Image = LoadImage( Platform.MacOSX );
+            pbLinux.Image = LoadImage( Platform.Linux );
+            pbWindows.Image = LoadImage( Platform.Windows);
+
         }
 
         private enum Platform
@@ -151,8 +165,42 @@ namespace MonoForm
                 return Enumerable.Range(0, str.Length / chunkSize)
                     .Select(i => str.Substring(i * chunkSize, chunkSize));
             }
-
        
         }
+
+        private void btRefresh_Click(object sender, EventArgs e)
+        {
+            GetIpInfo();
+        }
+
+        private Image LoadImage(Platform PlatformImage)
+        {
+            Image img = MonoForm.Properties.Resources.Windows;
+            switch (PlatformImage)
+            {
+                case Platform.Linux:
+                    img = MonoForm.Properties.Resources.Linux;
+                    break;
+                case Platform.MacOSX:
+                    img = MonoForm.Properties.Resources.MacOSX;
+                    break;
+            }
+            
+            if (CurrentPlatform != PlatformImage){
+                Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
+                Graphics graphics = Graphics.FromImage(bmp);
+                ColorMatrix colormatrix = new ColorMatrix();
+                colormatrix.Matrix33 = .08F;
+                ImageAttributes imgAttribute = new ImageAttributes();
+                imgAttribute.SetColorMatrix(colormatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                graphics.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute);
+                graphics.Dispose();   // Releasing all resource used by graphics
+               img = bmp;
+            }
+
+            return img;
+            
+        }
+      
     }
 }

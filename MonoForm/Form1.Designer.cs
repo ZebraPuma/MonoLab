@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btInfo = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.lblIP = new System.Windows.Forms.Label();
             this.lblSubNet = new System.Windows.Forms.Label();
@@ -37,22 +37,17 @@
             this.mtxtSubNet = new System.Windows.Forms.MaskedTextBox();
             this.mtxtGateway = new System.Windows.Forms.MaskedTextBox();
             this.gIPInfo = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pbWindows = new System.Windows.Forms.PictureBox();
+            this.pbLinux = new System.Windows.Forms.PictureBox();
+            this.pbMacOSX = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gIPInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWindows)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLinux)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMacOSX)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btInfo
-            // 
-            this.btInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btInfo.Location = new System.Drawing.Point(13, 13);
-            this.btInfo.Name = "btInfo";
-            this.btInfo.Size = new System.Drawing.Size(599, 23);
-            this.btInfo.TabIndex = 0;
-            this.btInfo.Text = "Get Info";
-            this.btInfo.UseVisualStyleBackColor = true;
-            this.btInfo.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtInfo
             // 
@@ -66,7 +61,8 @@
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
-            this.txtInfo.Size = new System.Drawing.Size(570, 239);
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtInfo.Size = new System.Drawing.Size(570, 324);
             this.txtInfo.TabIndex = 1;
             this.txtInfo.WordWrap = false;
             // 
@@ -75,7 +71,7 @@
             this.lblIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblIP.Location = new System.Drawing.Point(6, 18);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(111, 23);
+            this.lblIP.Size = new System.Drawing.Size(95, 23);
             this.lblIP.TabIndex = 2;
             this.lblIP.Text = "IPv4 Address :";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -85,7 +81,7 @@
             this.lblSubNet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblSubNet.Location = new System.Drawing.Point(6, 49);
             this.lblSubNet.Name = "lblSubNet";
-            this.lblSubNet.Size = new System.Drawing.Size(111, 23);
+            this.lblSubNet.Size = new System.Drawing.Size(95, 23);
             this.lblSubNet.TabIndex = 3;
             this.lblSubNet.Text = "Subnet Mask :";
             this.lblSubNet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -95,7 +91,7 @@
             this.lblGateway.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblGateway.Location = new System.Drawing.Point(6, 80);
             this.lblGateway.Name = "lblGateway";
-            this.lblGateway.Size = new System.Drawing.Size(111, 23);
+            this.lblGateway.Size = new System.Drawing.Size(95, 23);
             this.lblGateway.TabIndex = 4;
             this.lblGateway.Text = "Default Gateway :";
             this.lblGateway.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +101,7 @@
             this.mtxtIPAddress.BackColor = System.Drawing.Color.White;
             this.mtxtIPAddress.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtIPAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.mtxtIPAddress.Location = new System.Drawing.Point(127, 19);
+            this.mtxtIPAddress.Location = new System.Drawing.Point(104, 19);
             this.mtxtIPAddress.Mask = "##0.##0.##0.##0";
             this.mtxtIPAddress.Name = "mtxtIPAddress";
             this.mtxtIPAddress.PromptChar = ' ';
@@ -119,7 +115,7 @@
             this.mtxtSubNet.BackColor = System.Drawing.Color.White;
             this.mtxtSubNet.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtSubNet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.mtxtSubNet.Location = new System.Drawing.Point(127, 50);
+            this.mtxtSubNet.Location = new System.Drawing.Point(104, 50);
             this.mtxtSubNet.Mask = "##0.##0.##0.##0";
             this.mtxtSubNet.Name = "mtxtSubNet";
             this.mtxtSubNet.PromptChar = ' ';
@@ -133,7 +129,7 @@
             this.mtxtGateway.BackColor = System.Drawing.Color.White;
             this.mtxtGateway.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtGateway.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.mtxtGateway.Location = new System.Drawing.Point(127, 81);
+            this.mtxtGateway.Location = new System.Drawing.Point(104, 81);
             this.mtxtGateway.Mask = "##0.##0.##0.##0";
             this.mtxtGateway.Name = "mtxtGateway";
             this.mtxtGateway.PromptChar = ' ';
@@ -146,17 +142,60 @@
             // 
             this.gIPInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gIPInfo.Controls.Add(this.button1);
+            this.gIPInfo.Controls.Add(this.pbWindows);
+            this.gIPInfo.Controls.Add(this.pbLinux);
+            this.gIPInfo.Controls.Add(this.pbMacOSX);
             this.gIPInfo.Controls.Add(this.lblSubNet);
             this.gIPInfo.Controls.Add(this.mtxtGateway);
             this.gIPInfo.Controls.Add(this.lblIP);
             this.gIPInfo.Controls.Add(this.mtxtSubNet);
             this.gIPInfo.Controls.Add(this.lblGateway);
             this.gIPInfo.Controls.Add(this.mtxtIPAddress);
-            this.gIPInfo.Location = new System.Drawing.Point(13, 42);
+            this.gIPInfo.Location = new System.Drawing.Point(13, 12);
             this.gIPInfo.Name = "gIPInfo";
-            this.gIPInfo.Size = new System.Drawing.Size(599, 112);
+            this.gIPInfo.Size = new System.Drawing.Size(599, 111);
             this.gIPInfo.TabIndex = 8;
             this.gIPInfo.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(505, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 85);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Refresh IP";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btRefresh_Click);
+            // 
+            // pbWindows
+            // 
+            this.pbWindows.Image = ((System.Drawing.Image)(resources.GetObject("pbWindows.Image")));
+            this.pbWindows.Location = new System.Drawing.Point(414, 18);
+            this.pbWindows.Name = "pbWindows";
+            this.pbWindows.Size = new System.Drawing.Size(85, 85);
+            this.pbWindows.TabIndex = 10;
+            this.pbWindows.TabStop = false;
+            // 
+            // pbLinux
+            // 
+            this.pbLinux.Image = global::MonoForm.Properties.Resources.Linux;
+            this.pbLinux.Location = new System.Drawing.Point(323, 16);
+            this.pbLinux.Name = "pbLinux";
+            this.pbLinux.Size = new System.Drawing.Size(85, 85);
+            this.pbLinux.TabIndex = 9;
+            this.pbLinux.TabStop = false;
+            // 
+            // pbMacOSX
+            // 
+            this.pbMacOSX.Enabled = false;
+            this.pbMacOSX.Image = ((System.Drawing.Image)(resources.GetObject("pbMacOSX.Image")));
+            this.pbMacOSX.Location = new System.Drawing.Point(232, 18);
+            this.pbMacOSX.Name = "pbMacOSX";
+            this.pbMacOSX.Size = new System.Drawing.Size(85, 85);
+            this.pbMacOSX.TabIndex = 8;
+            this.pbMacOSX.TabStop = false;
             // 
             // panel1
             // 
@@ -166,25 +205,27 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.txtInfo);
-            this.panel1.Location = new System.Drawing.Point(13, 160);
+            this.panel1.Location = new System.Drawing.Point(13, 129);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(599, 269);
+            this.panel1.Size = new System.Drawing.Size(599, 354);
             this.panel1.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(624, 495);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gIPInfo);
-            this.Controls.Add(this.btInfo);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SkypeBox";
             this.gIPInfo.ResumeLayout(false);
             this.gIPInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWindows)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLinux)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMacOSX)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -193,7 +234,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btInfo;
         private System.Windows.Forms.TextBox txtInfo;
         private System.Windows.Forms.Label lblIP;
         private System.Windows.Forms.Label lblSubNet;
@@ -203,6 +243,10 @@
         private System.Windows.Forms.MaskedTextBox mtxtGateway;
         private System.Windows.Forms.GroupBox gIPInfo;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pbWindows;
+        private System.Windows.Forms.PictureBox pbLinux;
+        private System.Windows.Forms.PictureBox pbMacOSX;
+        private System.Windows.Forms.Button button1;
     }
 }
 
