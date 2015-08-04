@@ -28,8 +28,8 @@ namespace MonoForm
         {
             String Command = "";
             String Arguments = "";
-            Platform Platform = GetPlatform();
-            switch (Platform)
+            Platform Os = GetPlatform();
+            switch (Os)
             {
                 case Platform.Windows:
                     Command = "ipconfig";
@@ -47,7 +47,7 @@ namespace MonoForm
             }
 
             String HostName = Dns.GetHostName().ToLower();
-            txtInfo.Text = string.Format("{0} Box : {1}\r\n\r\n", Platform, HostName);
+            txtInfo.Text = string.Format("{0} Box : {1}\r\n\r\n", Os, HostName);
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
