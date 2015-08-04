@@ -42,6 +42,7 @@ namespace MonoForm
                 case Platform.Linux:
                     Command = "ifconfig";
                     Arguments = "eth0";
+                    Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 case Platform.MacOSX:
                     Command = "ifconfig";
@@ -134,7 +135,7 @@ namespace MonoForm
             private string FormatIPAddress( String Address)
             {
                 var blocks = Address.Split('.');
-                blocks = blocks.Select( item => item.PadLeft(3, ' ')).ToArray();
+                blocks = blocks.Select( item => item.Trim().PadLeft(3, ' ')).ToArray();
                 return String.Join(".", blocks).ToString();
             }
 
