@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Threading;
 
 namespace MonoForm
 {
@@ -28,11 +31,13 @@ namespace MonoForm
         {
             String Command = "";
             String Arguments = "";
+            String Pattern = "";
             Platform Os = GetPlatform();
             switch (Os)
             {
                 case Platform.Windows:
                     Command = "ipconfig";
+                    Pattern = @"IPv4.*: (?<ip>.*)\r\n.*: (?<net>.*)\r\n.*: (?<gw>.*)\r\n";
                     break;
                 case Platform.Linux:
                     Command = "ifconfig";
@@ -58,6 +63,19 @@ namespace MonoForm
             pNet.StartInfo = psi;
             pNet.Start();
             txtInfo.Text += pNet.StandardOutput.ReadToEnd();
+            Clipboard.Clear();
+            Clipboard.SetText(txtInfo.Text);
+
+            String Input = txtInfo.Text;
+            Regex Ex = new Regex(Pattern);
+            Match M = Ex.Match(Input);
+            if (M.Success )
+            {
+                IPInfo Ip = new IPInfo(M.Groups["ip"].Value,  M.Groups["net"].Value, M.Groups["gw"].Value );
+                mtxtIPAddress.Text = Ip.IPAddress;
+                mtxtSubNet.Text = Ip.SubNet;
+                mtxtGateway.Text = Ip.Gateway;
+            }
         }
 
         private Platform GetPlatform()
@@ -98,6 +116,28 @@ namespace MonoForm
                 };
                 return bReturn;
             }
+        }
+
+        private class IPInfo
+        {
+            public IPInfo(String IPAddress, String SubNet, String Gateway) {
+                this.IPAddress = FormatIPAddress(IPAddress);
+                this.SubNet = FormatIPAddress(SubNet);
+                this.Gateway = FormatIPAddress(Gateway);
+
+            }
+
+            public String IPAddress { get; set; }
+            public String SubNet{ get; set; }
+            public String Gateway { get; set; }
+
+            private string FormatIPAddress( String Address)
+            {
+                var blocks = Address.Split('.');
+                blocks = blocks.Select( item => item.PadLeft(3, ' ')).ToArray();
+                return String.Join(".", blocks).ToString();
+            }
+
         }
     }
 }
