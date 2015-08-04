@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Threading;
 
- 
+
 
 
 namespace MonoForm
@@ -36,7 +36,7 @@ namespace MonoForm
 
         }
 
-        private void GetIpInfo( )
+        private void GetIpInfo()
         {
             String Command = "";
             String Arguments = "";
@@ -62,9 +62,6 @@ namespace MonoForm
                 default:
                     break;
             }
-
-            String HostName = Dns.GetHostName().ToLower();
-            txtInfo.Text = string.Format("{0} Box : {1}\r\n\r\n", CurrentPlatform, HostName);
 
             Process pNet = new Process();
             ProcessStartInfo psi = new ProcessStartInfo(Command);
@@ -93,19 +90,25 @@ namespace MonoForm
 
         private void GetPlatform()
         {
-            switch (Environment.OSVersion.Platform )
+
+                String HostName = Dns.GetHostName();
+                HostName = HostName.Split('.')[0].ToUpper();
+                Text = string.Format("{0} IP Config", HostName);
+
+
+            switch (Environment.OSVersion.Platform)
             {
                 case PlatformID.MacOSX:
                     CurrentPlatform = Platform.MacOSX;
                     break;
                 case PlatformID.Unix:
-                    CurrentPlatform =  ( IsMacOS() ? Platform.MacOSX : Platform.Linux);
+                    CurrentPlatform = (IsMacOS() ? Platform.MacOSX : Platform.Linux);
                     break;
             }
 
-            pbMacOSX.Image = LoadImage( Platform.MacOSX );
-            pbLinux.Image = LoadImage( Platform.Linux );
-            pbWindows.Image = LoadImage( Platform.Windows);
+            pbMacOSX.Image = LoadImage(Platform.MacOSX);
+            pbLinux.Image = LoadImage(Platform.Linux);
+            pbWindows.Image = LoadImage(Platform.Windows);
 
         }
 
@@ -138,7 +141,8 @@ namespace MonoForm
 
         private class IPInfo
         {
-            public IPInfo(String IPAddress, String SubNet, String Gateway) {
+            public IPInfo(String IPAddress, String SubNet, String Gateway)
+            {
                 this.IPAddress = FormatIPAddress(IPAddress);
                 this.SubNet = FormatIPAddress(SubNet);
                 this.Gateway = FormatIPAddress(Gateway);
@@ -146,18 +150,18 @@ namespace MonoForm
             }
 
             public String IPAddress { get; set; }
-            public String SubNet{ get; set; }
+            public String SubNet { get; set; }
             public String Gateway { get; set; }
 
-            private string FormatIPAddress( String Address)
+            private string FormatIPAddress(String Address)
             {
                 if (Address.StartsWith("0x"))
                 {
                     Address = Address.TrimStart("0x".ToCharArray());
-                    Address = String.Join(".", Split( Address, 2).Select( item => int.Parse( item, System.Globalization.NumberStyles.HexNumber )).ToArray());
+                    Address = String.Join(".", Split(Address, 2).Select(item => int.Parse(item, System.Globalization.NumberStyles.HexNumber)).ToArray());
                 }
                 var blocks = Address.Split('.');
-                blocks = blocks.Select( item => item.Trim().PadLeft(3, ' ')).ToArray();
+                blocks = blocks.Select(item => item.Trim().PadLeft(3, ' ')).ToArray();
                 return String.Join(".", blocks).ToString();
             }
 
@@ -166,7 +170,7 @@ namespace MonoForm
                 return Enumerable.Range(0, str.Length / chunkSize)
                     .Select(i => str.Substring(i * chunkSize, chunkSize));
             }
-       
+
         }
 
         private void btRefresh_Click(object sender, EventArgs e)
@@ -186,8 +190,9 @@ namespace MonoForm
                     img = MonoForm.Properties.Resources.MacOSX;
                     break;
             }
-            
-            if (CurrentPlatform != PlatformImage){
+
+            if (CurrentPlatform != PlatformImage)
+            {
                 Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
                 Graphics graphics = Graphics.FromImage(bmp);
                 ColorMatrix colormatrix = new ColorMatrix();
@@ -196,12 +201,19 @@ namespace MonoForm
                 imgAttribute.SetColorMatrix(colormatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
                 graphics.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute);
                 graphics.Dispose();   // Releasing all resource used by graphics
-               img = bmp;
+                img = bmp;
             }
+            else
+            {
+                Bitmap BitmapIcon = new Bitmap(img, new Size(32, 32));
+                IntPtr Hicon = BitmapIcon.GetHicon();
+                this.Icon = Icon.FromHandle(Hicon);
+
+            };
 
             return img;
-            
+
         }
-      
+
     }
 }
