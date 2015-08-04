@@ -57,6 +57,7 @@
             this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfo.BackColor = System.Drawing.Color.White;
             this.txtInfo.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInfo.Location = new System.Drawing.Point(13, 160);
             this.txtInfo.Multiline = true;
@@ -98,36 +99,42 @@
             // 
             // mtxtIPAddress
             // 
+            this.mtxtIPAddress.BackColor = System.Drawing.Color.White;
             this.mtxtIPAddress.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtIPAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.mtxtIPAddress.Location = new System.Drawing.Point(127, 19);
             this.mtxtIPAddress.Mask = "##0.##0.##0.##0";
             this.mtxtIPAddress.Name = "mtxtIPAddress";
             this.mtxtIPAddress.PromptChar = ' ';
+            this.mtxtIPAddress.ReadOnly = true;
             this.mtxtIPAddress.Size = new System.Drawing.Size(119, 20);
             this.mtxtIPAddress.TabIndex = 5;
             this.mtxtIPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mtxtSubNet
             // 
+            this.mtxtSubNet.BackColor = System.Drawing.Color.White;
             this.mtxtSubNet.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtSubNet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.mtxtSubNet.Location = new System.Drawing.Point(127, 50);
             this.mtxtSubNet.Mask = "##0.##0.##0.##0";
             this.mtxtSubNet.Name = "mtxtSubNet";
             this.mtxtSubNet.PromptChar = ' ';
+            this.mtxtSubNet.ReadOnly = true;
             this.mtxtSubNet.Size = new System.Drawing.Size(119, 20);
             this.mtxtSubNet.TabIndex = 6;
             this.mtxtSubNet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mtxtGateway
             // 
+            this.mtxtGateway.BackColor = System.Drawing.Color.White;
             this.mtxtGateway.Culture = new System.Globalization.CultureInfo("en-US");
             this.mtxtGateway.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.mtxtGateway.Location = new System.Drawing.Point(127, 81);
             this.mtxtGateway.Mask = "##0.##0.##0.##0";
             this.mtxtGateway.Name = "mtxtGateway";
             this.mtxtGateway.PromptChar = ' ';
+            this.mtxtGateway.ReadOnly = true;
             this.mtxtGateway.Size = new System.Drawing.Size(119, 20);
             this.mtxtGateway.TabIndex = 7;
             this.mtxtGateway.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
