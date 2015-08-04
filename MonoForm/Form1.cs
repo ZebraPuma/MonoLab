@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
+using System.Runtime.InteropServices;
 
 namespace MonoForm
 {
     public partial class Form1 : Form
     {
+        [DllImport("libc")]
+        static extern int uname(IntPtr buf);
+
+
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +28,7 @@ namespace MonoForm
         {
             String Command = "";
             String Arguments = "";
-            Platform Platform =  GetPlatform();
+            Platform Platform = GetPlatform();
             switch (Platform)
             {
                 case Platform.Windows:
@@ -31,9 +36,11 @@ namespace MonoForm
                     break;
                 case Platform.Linux:
                     Command = "ifconfig";
+                    Arguments = "eth0";
                     break;
                 case Platform.MacOSX:
                     Command = "ifconfig";
+                    Arguments = "en0";
                     break;
                 default:
                     break;
@@ -53,13 +60,14 @@ namespace MonoForm
             txtInfo.Text += pNet.StandardOutput.ReadToEnd();
         }
 
-        private Platform GetPlatform() {
-            switch (System.Environment.OSVersion.Platform )
+        private Platform GetPlatform()
+        {
+            switch (System.Environment.OSVersion.Platform)
             {
                 case PlatformID.MacOSX:
                     return Platform.MacOSX;
                 case PlatformID.Unix:
-                    return Platform.Linux;
+                    return ( IsMacOS() ? Platform.MacOSX : Platform.Linux);
                 default:
                     return Platform.Windows;
             }
@@ -70,6 +78,26 @@ namespace MonoForm
             Windows,
             Linux,
             MacOSX
+        }
+
+        private bool IsMacOS()
+        {
+            {
+                Boolean bReturn = false;
+                if (Environment.OSVersion.Platform == PlatformID.Unix)
+                {
+
+                    IntPtr buf = Marshal.AllocHGlobal(8192);
+                    if (uname(buf) == 0)
+                    {
+                        string os = Marshal.PtrToStringAnsi(buf);
+                        if (os == "Darwin")
+                            bReturn = true;
+                    }
+                    Marshal.FreeHGlobal(buf);
+                };
+                return bReturn;
+            }
         }
     }
 }
