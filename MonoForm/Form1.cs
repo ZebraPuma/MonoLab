@@ -32,6 +32,7 @@ namespace MonoForm
             InitializeComponent();
             GetPlatform();
             GetIpInfo();
+            btRefresh.Select();
 
         }
 

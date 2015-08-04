@@ -37,7 +37,7 @@
             this.mtxtSubNet = new System.Windows.Forms.MaskedTextBox();
             this.mtxtGateway = new System.Windows.Forms.MaskedTextBox();
             this.gIPInfo = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btRefresh = new System.Windows.Forms.Button();
             this.pbWindows = new System.Windows.Forms.PictureBox();
             this.pbLinux = new System.Windows.Forms.PictureBox();
             this.pbMacOSX = new System.Windows.Forms.PictureBox();
@@ -64,6 +64,7 @@
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtInfo.Size = new System.Drawing.Size(570, 324);
             this.txtInfo.TabIndex = 1;
+            this.txtInfo.TabStop = false;
             this.txtInfo.WordWrap = false;
             // 
             // lblIP
@@ -72,7 +73,7 @@
             this.lblIP.Location = new System.Drawing.Point(6, 18);
             this.lblIP.Name = "lblIP";
             this.lblIP.Size = new System.Drawing.Size(95, 23);
-            this.lblIP.TabIndex = 2;
+            this.lblIP.TabIndex = 0;
             this.lblIP.Text = "IPv4 Address :";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -82,7 +83,7 @@
             this.lblSubNet.Location = new System.Drawing.Point(6, 49);
             this.lblSubNet.Name = "lblSubNet";
             this.lblSubNet.Size = new System.Drawing.Size(95, 23);
-            this.lblSubNet.TabIndex = 3;
+            this.lblSubNet.TabIndex = 2;
             this.lblSubNet.Text = "Subnet Mask :";
             this.lblSubNet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -107,7 +108,7 @@
             this.mtxtIPAddress.PromptChar = ' ';
             this.mtxtIPAddress.ReadOnly = true;
             this.mtxtIPAddress.Size = new System.Drawing.Size(119, 20);
-            this.mtxtIPAddress.TabIndex = 5;
+            this.mtxtIPAddress.TabIndex = 1;
             this.mtxtIPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mtxtSubNet
@@ -121,7 +122,7 @@
             this.mtxtSubNet.PromptChar = ' ';
             this.mtxtSubNet.ReadOnly = true;
             this.mtxtSubNet.Size = new System.Drawing.Size(119, 20);
-            this.mtxtSubNet.TabIndex = 6;
+            this.mtxtSubNet.TabIndex = 3;
             this.mtxtSubNet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mtxtGateway
@@ -135,14 +136,14 @@
             this.mtxtGateway.PromptChar = ' ';
             this.mtxtGateway.ReadOnly = true;
             this.mtxtGateway.Size = new System.Drawing.Size(119, 20);
-            this.mtxtGateway.TabIndex = 7;
+            this.mtxtGateway.TabIndex = 5;
             this.mtxtGateway.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gIPInfo
             // 
             this.gIPInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gIPInfo.Controls.Add(this.button1);
+            this.gIPInfo.Controls.Add(this.btRefresh);
             this.gIPInfo.Controls.Add(this.pbWindows);
             this.gIPInfo.Controls.Add(this.pbLinux);
             this.gIPInfo.Controls.Add(this.pbMacOSX);
@@ -155,19 +156,19 @@
             this.gIPInfo.Location = new System.Drawing.Point(13, 12);
             this.gIPInfo.Name = "gIPInfo";
             this.gIPInfo.Size = new System.Drawing.Size(599, 111);
-            this.gIPInfo.TabIndex = 8;
+            this.gIPInfo.TabIndex = 1;
             this.gIPInfo.TabStop = false;
             // 
-            // button1
+            // btRefresh
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(505, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 85);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Refresh IP";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btRefresh_Click);
+            this.btRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btRefresh.Location = new System.Drawing.Point(505, 18);
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.Size = new System.Drawing.Size(85, 85);
+            this.btRefresh.TabIndex = 6;
+            this.btRefresh.Text = "Refresh IP";
+            this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
             // 
             // pbWindows
             // 
@@ -180,8 +181,8 @@
             // 
             // pbLinux
             // 
-            this.pbLinux.Image = global::MonoForm.Properties.Resources.Linux;
-            this.pbLinux.Location = new System.Drawing.Point(323, 16);
+            this.pbLinux.Image = ((System.Drawing.Image)(resources.GetObject("pbLinux.Image")));
+            this.pbLinux.Location = new System.Drawing.Point(323, 18);
             this.pbLinux.Name = "pbLinux";
             this.pbLinux.Size = new System.Drawing.Size(85, 85);
             this.pbLinux.TabIndex = 9;
@@ -208,10 +209,11 @@
             this.panel1.Location = new System.Drawing.Point(13, 129);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(599, 354);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 0;
             // 
             // Form1
             // 
+            this.AcceptButton = this.btRefresh;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 495);
@@ -246,7 +248,7 @@
         private System.Windows.Forms.PictureBox pbWindows;
         private System.Windows.Forms.PictureBox pbLinux;
         private System.Windows.Forms.PictureBox pbMacOSX;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btRefresh;
     }
 }
 
