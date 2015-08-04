@@ -51,12 +51,12 @@ namespace MonoForm
                     break;
                 case Platform.Linux:
                     Command = "ifconfig";
-                    // Arguments = "eth0";
+                    Arguments = "eth0";
                     Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 case Platform.MacOSX:
                     Command = "ifconfig";
-                    // Arguments = "en0";
+                    Arguments = "en0";
                     Pattern = @"inet\s(?<ip>.*)\snetmask\s(?<net>.*)\sbroadcast\s(?<gw>.*)";
                     break;
                 default:
@@ -93,7 +93,7 @@ namespace MonoForm
 
                 String HostName = Dns.GetHostName();
                 HostName = HostName.Split('.')[0].ToUpper();
-                Text = string.Format("{0} - IP Config", HostName);
+                Text = string.Format("Default Network IP Config - {0}", HostName);
 
 
             switch (Environment.OSVersion.Platform)
